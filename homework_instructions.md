@@ -127,7 +127,7 @@ Having an active and healthy commit history on GitHub is important for your futu
     * Export at the end of the `burger.js` file.
 
 #### Controller setup
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 1. Inside your `burger` directory, create a folder named `controllers`.
 
 2. In `controllers`, create the `burgers_controller.js` file.
