@@ -1,50 +1,40 @@
-var connection = require("./connection.js");
-
+var connection = require("../config/connection.js");
 // Object Relational Mapper (ORM)
 
 // The ?? signs are for swapping out table or column names
 // The ? signs are for swapping out other values
 // These help avoid SQL injection
 var orm = {
-    selectALL:(tableInput, done) => {
-      var queryString = "SELECT * FROM ??";
-      connection.query(queryString, [tableInput], (err, result) => {
-        if (err) throw err;
-        done(result);
+    selectAll:(tableInput, cb) => {
+      var queryString = "SELECT * FROM" + tableInput + ";";
+      connection.query(queryString, (err, result) => {
+        if (err) {
+          throw err;
+        }
+        cb(result);
       });
     },
-    insertOne:(tableInput, columInput, values, done) => {
-      var queryString = "INSERT INTO ?? (???) VALUES (?)";
-      connection.query(queryString, [tableInput, columInput, values], 
-        (err, result) => {
-        if (err) throw err;
-        done(result);
-      });
-    },
-    updateOne:(tableInput, columInput, id, done) => {
-      var queryString =
-        "UPDATE FROM ?? SET = ? WHERE id = ?";
   
-      connection.query(
-        queryString,
-        [tableInput, columInput, id],
+    insertOne: function(tableInput, column, cb) {
+      var colString = column.toString();
+      var queryString = "INSERT INTO " + tableInput + "(burger_name, devoured) VALUES ('" + colString + "', false)";
+      console.log(queryString);
+      connection.query(queryString, function (err, result) {
+        if (err) throw err;
+        cb(result);
+      });
+    },
+
+    updateOne:(tableInput, columInput, condition, cb) => {
+      var queryString = "UPDATE" + tableInput;
+  
+      connection.query(queryString,
+        [tableInput, columInput, condition, id],
         (err, result) => {
           if (err) throw err;
-          done(result);
+          cb(result);
         }
       );
-    },
-    deleteOne:(tableInput, columInput, id, done) => {
-      var queryString =
-         "DELETE FROM ?? WHERE ?? = ? "
-         connection.query(queryString, [tableInput, columInput, id, ], 
-           (err, result) => {
-          if (err) throw err;
-          done(result);
-             
-           }
-    
-         );
     },
 }
   module.exports = orm;
