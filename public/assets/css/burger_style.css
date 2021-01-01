@@ -1,0 +1,33 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	text-align: center;
+	background-color: silver;
+}
+
+li {
+	margin: 10px;
+	list-style-type: none;
+}
+
+.container {
+	display: flex;
+}
+
+.notdevoured {
+	flex: 1;
+	margin-top: 10px;
+}
+
+.devoured {
+	flex: 1;
+	margin-top: 10px;
+}
+
+.burgerphoto {
+	max-width: 350px;
+	max-height: 350px;
+	margin-bottom: 10px;
+}
