@@ -1,6 +1,6 @@
 <h1>Eat-Da-Burger!</h1>
 
-<img class="burgerphoto" src="../assets/download.jpg">
+<img src="/assets/img/burger.jpg" alt="burger" class="burgerphoto">
 
 <main>
 
@@ -12,8 +12,8 @@
             <ul>
                 {{#each burgers}}
                 {{#unless devoured}}
-                <li>{{burger_name}} <button class="devour" style="margin-right: 2px;" data-id={{id}}>Devour It
-                        !</button></li>
+                <li>{{burger_name}} <button class="devour" style="margin-right: 2px;" data-id={{id}}>Devour It!
+                </button></li>
                 {{/unless}}
 
                 {{/each}}

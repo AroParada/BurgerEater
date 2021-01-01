@@ -1,4 +1,37 @@
 var connection = require("../config/connection.js");
+
+function printQuestionMarks(num) {
+  var arr = [];
+
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+
+  return arr.toString();
+}
+
+// Helper function to convert object key/value pairs to SQL syntax
+function objToSql(ob) {
+  var arr = [];
+
+  // loop through the keys and push the key/value as a string int arr
+  for (var key in ob) {
+    var value = ob[key];
+    // check to skip hidden properties
+    if (Object.hasOwnProperty.call(ob, key)) {
+      // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
+      // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
+      // e.g. {sleepy: true} => ["sleepy=true"]
+      arr.push(key + "=" + value);
+    }
+  }
+
+  // translate array of strings to a single comma-separated string
+  return arr.toString();
+}
 // Object Relational Mapper (ORM)
 
 // The ?? signs are for swapping out table or column names
@@ -6,7 +39,7 @@ var connection = require("../config/connection.js");
 // These help avoid SQL injection
 var orm = {
     selectAll:(tableInput, cb) => {
-      var queryString = "SELECT * FROM" + tableInput + ";";
+      var queryString = "SELECT * FROM " + tableInput + ";";
       connection.query(queryString, (err, result) => {
         if (err) {
           throw err;
@@ -14,28 +47,6 @@ var orm = {
         cb(result);
       });
     },
-  
-    insertOne: function(tableInput, column, cb) {
-      var colString = column.toString();
-      var queryString = "INSERT INTO " + tableInput + "(burger_name, devoured) VALUES ('" + colString + "', false)";
-      console.log(queryString);
-      connection.query(queryString, function (err, result) {
-        if (err) throw err;
-        cb(result);
-      });
-    },
-
-    updateOne:(tableInput, columInput, condition, cb) => {
-      var queryString = "UPDATE" + tableInput;
-  
-      connection.query(queryString,
-        [tableInput, columInput, condition, id],
-        (err, result) => {
-          if (err) throw err;
-          cb(result);
-        }
-      );
-    },
-}
+  }
   module.exports = orm;
   
