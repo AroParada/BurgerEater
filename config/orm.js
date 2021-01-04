@@ -68,10 +68,9 @@ var orm = {
       cb(result);
     });
   },
-  update: function(table, columnVal, condition, cb) {
+  update: function(table, condition, cb) {
     var queryString = "UPDATE " + table;
-    queryString += columnVal
-    queryString += 'SET devoured = !devoured';
+    queryString += ' SET devoured = 1';
     queryString += " WHERE ";
     queryString += condition;
 
