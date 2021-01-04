@@ -10,6 +10,11 @@ var burger = {
       cb(res);
     });
   },
+  update: function(columnVal, condition, cb) {
+    orm.update("burgers", columnVal, condition, function(res) {
+      cb(res);
+    });
+  },
 }
   // Exports the database functions for the controller .
   module.exports = burger;
