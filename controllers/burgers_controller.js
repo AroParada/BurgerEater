@@ -29,9 +29,8 @@ router.post("/api/burgers", function(req, res) {
     var columnVal = req.params.name
     
     console.log("condition", condition);
-    console.log("columnVal = ", columnVal);
-    
-
+  
+  
     burger.update(
       columnVal, 
       condition, function(result) {
