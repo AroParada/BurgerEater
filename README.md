@@ -7,7 +7,12 @@ Burger logger with MySQL, Node, Express, Handlebars and a homemade ORM.MVC desig
 ```
 Eat-Da-Burger! is a restaurant app that lets users input the names of burgers they'd like to eat.Whenever a user submits a burger's name, the app will display the burger on the left side of the page -- waiting to be devoured.
 ```
-### Screenshot and links
+### Screenshot and link
 
-<img src="\assets\img\Screenshot (109).png">
+* [HEROKU Deployment](https://myburgereater.herokuapp.com/)
+
+<img src="public\assets\img\Screenshot (122).png">
+
+### Contact 
+haroldparada20@gmail.com
 
